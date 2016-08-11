@@ -2,12 +2,15 @@ package com.chaitu.hmsrest.models;
 
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +24,7 @@ public class Host implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hostId")
-    private int hostId;
+    private long hostId;
 
     @Column(name = "hostName")
     private String hostName;
@@ -35,11 +38,22 @@ public class Host implements Serializable{
     @Column(name = "hostPicPath")
     private String hostPicPath;
     
-    public int getHostId() {
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Hostel> hostelsList;
+    
+    public List<Hostel> getHostelsList() {
+		return hostelsList;
+	}
+
+	public void setHostelsList(List<Hostel> hostelsList) {
+		this.hostelsList = hostelsList;
+	}
+
+	public long getHostId() {
         return hostId;
     }
 
-    public void setHostId(int hostId) {
+    public void setHostId(long hostId) {
         this.hostId = hostId;
     }
 
@@ -75,14 +89,9 @@ public class Host implements Serializable{
         this.hostPicPath = hostPicPath;
     }
 
-    @Override
-    public String toString() {
-        return "Host{" +
-                "hostId=" + hostId +
-                ", hostName='" + hostName + '\'' +
-                ", hostEmail='" + hostEmail + '\'' +
-                ", hostPassword='" + hostPassword + '\'' +
-                ", hostPicPath='" + hostPicPath + '\'' +
-                '}' + "\n";
-    }
+	@Override
+	public String toString() {
+		return "Host [hostId=" + hostId + ", hostName=" + hostName + ", hostEmail=" + hostEmail + ", hostPassword="
+				+ hostPassword + ", hostPicPath=" + hostPicPath + ", hostelsList=" + hostelsList + "]";
+	}
 }
