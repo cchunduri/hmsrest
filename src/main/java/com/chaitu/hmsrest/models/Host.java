@@ -21,7 +21,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "HOST")
 public class Host implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hostId")
     private long hostId;
