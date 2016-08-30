@@ -1,5 +1,6 @@
 package com.chaitu.hmsrest.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 	
 	@RequestMapping(value = "/")
-	public String helloWorld() {
-		return "Welcome to Hostel Management System\n";
+	public String helloWorld(Model model) {
+		return "index";
 	}
 }

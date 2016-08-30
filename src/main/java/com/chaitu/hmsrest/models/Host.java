@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.chaitu.hmsrest.utils.AddressProof;
+
 /**
  * Host is the one who is the owner of all Hostels. Under him lot of hostels will be running. <br />
  *
@@ -28,30 +30,52 @@ public class Host implements Serializable{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hostId")
+    @Column(name = "HOST_ID", unique = true, nullable = false)
     private long hostId;
 
-    @Column(name = "hostName")
+    @Column(name = "HOST_NAME")
     private String hostName;
 
-    @Column(name = "hostEmail")
+    @Column(name = "HOST_EMAIL")
     private String hostEmail;
 
-    @Column(name = "hostPassword")
+    @Column(name = "HOST_PASSWORD")
     private String hostPassword;
 
-    @Column(name = "hostPicPath")
+    @Column(name = "HOST_PIC_PATH")
     private String hostPicPath;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    List<Hostel> hostelsList;
+    @Column(name = "ADDRESS_PROOF_TYPE")
+    private AddressProof addressProof;
     
-    public List<Hostel> getHostelsList() {
-		return hostelsList;
+    @Column(name = "ADDRESS_PROOF_ID")
+    private String addressProofId;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    List<Hostel> hostels;
+    
+    public AddressProof getAddressProof() {
+		return addressProof;
 	}
 
-	public void setHostelsList(List<Hostel> hostelsList) {
-		this.hostelsList = hostelsList;
+	public void setAddressProof(AddressProof addressProof) {
+		this.addressProof = addressProof;
+	}
+
+	public String getAddressProofId() {
+		return addressProofId;
+	}
+
+	public void setAddressProofId(String addressProofId) {
+		this.addressProofId = addressProofId;
+	}
+
+	public List<Hostel> getHostels() {
+		return hostels;
+	}
+
+	public void setHostels(List<Hostel> hostels) {
+		this.hostels = hostels;
 	}
 
 	public long getHostId() {
@@ -97,6 +121,7 @@ public class Host implements Serializable{
 	@Override
 	public String toString() {
 		return "Host [hostId=" + hostId + ", hostName=" + hostName + ", hostEmail=" + hostEmail + ", hostPassword="
-				+ hostPassword + ", hostPicPath=" + hostPicPath + ", hostelsList=" + hostelsList + "]";
+				+ hostPassword + ", hostPicPath=" + hostPicPath + ", addressProof=" + addressProof + ", addressProofId="
+				+ addressProofId + ", hostels=" + hostels + "]";
 	}
 }

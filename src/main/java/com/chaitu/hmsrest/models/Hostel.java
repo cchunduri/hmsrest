@@ -1,53 +1,43 @@
 package com.chaitu.hmsrest.models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "HOSTEL")
+@Table(name = "HOSTELS")
 public class Hostel {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "HOSTEL_ID", unique = true, nullable = false)
 	private long hostelId;
-	
-	@Column 
+
+	@Column(name = "HOSTEL_NAME")
 	private String hostelName;
-	
-	@Column
+
+	@Column(name = "LANDMARK")
 	private String landMark;
+
+	@Column(name = "ADDRESS_LINE_1")
+	private String addressLine1;
+
+	@Column(name = "ADDRESS_LINE_2")
+	private String addressLine2;
 	
-	@Column
-	private String hostelAddress;
+	@Column(name = "CITY")
+	private String city;
 	
-	@Column
+	@Column(name = "STATE")
+	private String state;
+	
+	@Column(name = "PINCODE")
+	private String pinCode;
+	
+	@Column(name = "NUMBER_OF_ROOMS")
 	private int numberOfRooms;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Rooms> typeOfRooms;
-	
-	public int getNumberOfRooms() {
-		return numberOfRooms;
-	}
-
-	public void setNumberOfRooms(int numberOfRooms) {
-		this.numberOfRooms = numberOfRooms;
-	}
-
-	public List<Rooms> getTypeOfRooms() {
-		return typeOfRooms;
-	}
-
-	public void setTypeOfRooms(List<Rooms> typeOfRooms) {
-		this.typeOfRooms = typeOfRooms;
-	}
 
 	public long getHostelId() {
 		return hostelId;
@@ -73,19 +63,59 @@ public class Hostel {
 		this.landMark = landMark;
 	}
 
-	public String getHostelAddress() {
-		return hostelAddress;
+	public String getAddressLine1() {
+		return addressLine1;
 	}
 
-	public void setHostelAddress(String hostelAddress) {
-		this.hostelAddress = hostelAddress;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
 	}
 
 	@Override
 	public String toString() {
 		return "Hostel [hostelId=" + hostelId + ", hostelName=" + hostelName + ", landMark=" + landMark
-				+ ", hostelAddress=" + hostelAddress + ", numberOfRooms=" + numberOfRooms + ", typeOfRooms="
-				+ typeOfRooms + "]";
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state="
+				+ state + ", pinCode=" + pinCode + ", numberOfRooms=" + numberOfRooms + "]";
 	}
-	
+
 }
