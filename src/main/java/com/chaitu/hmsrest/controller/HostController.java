@@ -5,6 +5,7 @@ import com.chaitu.hmsrest.dao.HostelDao;
 import com.chaitu.hmsrest.models.Host;
 import com.chaitu.hmsrest.models.Hostel;
 import com.chaitu.hmsrest.utils.AddressProof;
+import com.chaitu.hmsrest.utils.Helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ class HostController {
     @Autowired
     private HostelDao hostelDao;
 
+    @Autowired
+    Helper helper;
+
     @RequestMapping(value = "/host/", method = RequestMethod.GET)
 	public List<Host> findAllHost() {
 		return hostDao.findAll();
@@ -36,7 +40,7 @@ class HostController {
 	
 	@RequestMapping(value = "/host/create", method = RequestMethod.POST) 
 	public ResponseEntity<String> createHost() {
-        return new ResponseEntity<>(hostDao.save(getTempHostDetails()).toString(), HttpStatus.OK);
+        return new ResponseEntity<>(hostDao.save(helper.getTempHostDetails()).toString(), HttpStatus.OK);
     }
 	
 	@RequestMapping(value = "/host/{hostId}/addhostel")
@@ -58,52 +62,17 @@ class HostController {
 
     private Hostel addHostelToHost(long hostId) {
 
-		Hostel hostel = new Hostel();
-		hostel.setHostelName("Chaitanya Ex Hostel");
-		hostel.setAddressLine1("SrinivasaNagar West");
-		hostel.setAddressLine2("");
-		hostel.setCity("Hyderabad");
-		hostel.setLandMark("Mytrivanam");
-		hostel.setState("Telangana");
-		hostel.setPinCode("523168");
-		hostel.setNumberOfRooms(30);
+        Hostel hostel = new Hostel();
+        hostel.setHostelName("Chaitanya Ex Hostel");
+        hostel.setAddressLine1("SrinivasaNagar West");
+        hostel.setAddressLine2("");
+        hostel.setCity("Hyderabad");
+        hostel.setLandMark("Mytrivanam");
+        hostel.setState("Telangana");
+        hostel.setPinCode("523168");
+        hostel.setNumberOfRooms(30);
         hostel.setHostId(hostId);
 
         return hostel;
-    }
-
-    private Host getTempHostDetails() {
-        Host host = new Host();
-        host.setHostName("Chaitanya");
-        host.setHostPassword("Ch");
-        host.setHostEmail("ch@gmail.com");
-        host.setHostPicPath("/pics/chaitanya.jpg");
-        host.setAddressProof(AddressProof.PAN_CARD);
-        host.setAddressProofId("BAXPC5019N");
-
-//		Rooms acRooms = new Rooms();
-//		acRooms.setNumberRoomsOfThisType(10);
-//		acRooms.setRoomType(RoomTypes.AC_TWO_SHARING);
-//
-//		Rooms fiveSharing = new Rooms();
-//		fiveSharing.setNumberRoomsOfThisType(10);
-//		fiveSharing.setRoomType(RoomTypes.FIVE_SHARING);
-//
-//		Rooms threeSharing = new Rooms();
-//		threeSharing.setNumberRoomsOfThisType(5);
-//		threeSharing.setRoomType(RoomTypes.THREE_SHARING);
-//
-//		Rooms singleRooms = new Rooms();
-//		singleRooms.setNumberRoomsOfThisType(10);
-//		singleRooms.setRoomType(RoomTypes.SINGLE_ROOMS);
-//
-//		List<Rooms> roomsList = new ArrayList<>();
-//		roomsList.add(acRooms);
-//		roomsList.add(fiveSharing);
-//		roomsList.add(threeSharing);
-//		roomsList.add(singleRooms);
-//		hostel.setTypeOfRooms(roomsList);
-
-        return host;
     }
 }

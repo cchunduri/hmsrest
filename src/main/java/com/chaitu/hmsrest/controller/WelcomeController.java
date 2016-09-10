@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 	
 	@RequestMapping(value = "/")
-	public String helloWorld(Model model) {
-		return "index";
+	public String helloWorld() {
+		return "Welcome to HMSRest";
 	}
 }
