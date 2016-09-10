@@ -9,6 +9,5 @@ import com.chaitu.hmsrest.models.Hostel;
 
 @Transactional
 public interface HostelDao extends CrudRepository<Hostel, Long>{
-	public List<Hostel> findAll();
-	public Long deleteByHostelId(long hostelId);
+    List<Hostel> findAll();
 }

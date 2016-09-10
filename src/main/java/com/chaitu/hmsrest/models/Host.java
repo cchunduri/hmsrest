@@ -1,19 +1,11 @@
 package com.chaitu.hmsrest.models;
 
 
+import com.chaitu.hmsrest.utils.AddressProof;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.chaitu.hmsrest.utils.AddressProof;
 
 /**
  * Host is the one who is the owner of all Hostels. Under him lot of hostels will be running. <br />
@@ -24,8 +16,8 @@ import com.chaitu.hmsrest.utils.AddressProof;
 @Table(name = "HOST")
 public class Host implements Serializable{
     /**
-	 * 
-	 */
+     *  Serialization
+     */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -52,7 +44,8 @@ public class Host implements Serializable{
     private String addressProofId;
     
     @OneToMany(cascade = CascadeType.ALL)
-    List<Hostel> hostels;
+    @JoinColumn(name = "HOST_ID")
+    private List<Hostel> hostels;
     
     public AddressProof getAddressProof() {
 		return addressProof;

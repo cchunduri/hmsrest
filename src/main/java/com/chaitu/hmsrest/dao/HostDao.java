@@ -1,13 +1,12 @@
 package com.chaitu.hmsrest.dao;
 
-import java.util.List;
-
+import com.chaitu.hmsrest.models.Host;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chaitu.hmsrest.models.Host;
+import java.util.List;
 
 @Transactional
 public interface HostDao extends CrudRepository<Host, Integer> {
-	public List<Host> findAll();
+	List<Host> findAll();
 }
